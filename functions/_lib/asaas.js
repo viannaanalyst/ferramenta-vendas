@@ -21,6 +21,7 @@ const callAsaas = async (env, path, method = 'GET', body = null) => {
     method,
     headers: {
       'Content-Type': 'application/json',
+      'User-Agent': 'InovaWeb-CRM/1.0',
       access_token: env.ASAAS_API_KEY,
     },
     body: body ? JSON.stringify(body) : undefined,

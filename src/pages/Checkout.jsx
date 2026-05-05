@@ -28,19 +28,15 @@ const PaymentTab = ({ value, current, onClick, label, icon: Icon }) => {
       aria-pressed={active}
       className={`relative flex-1 flex items-center justify-center gap-2 py-3.5 rounded-lg border transition-all ${
         active
-          ? 'border-transparent bg-gradient-to-br from-roxo/25 to-azul/15 text-bone shadow-[0_0_0_1.5px_rgba(255,255,255,0.35),0_10px_30px_-10px_rgba(106,17,203,0.6)]'
-          : 'border-bone/10 bg-white/[0.02] text-bone/50 hover:text-bone/80 hover:border-bone/20'
+          ? 'border-roxo/30 bg-gradient-to-br from-roxo/10 to-azul/5 text-roxo shadow-[0_0_0_1.5px_rgba(106,17,203,0.2)]'
+          : 'border-gray-200 bg-white text-gray-400 hover:text-gray-600 hover:border-gray-300'
       }`}
     >
       {active && (
-        <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+        <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
       )}
-      <Icon className={`w-4 h-4 ${active ? 'text-bone' : ''}`} />
-      <span
-        className={`font-mono-tech text-[11px] uppercase tracking-[0.18em] ${
-          active ? 'font-semibold' : ''
-        }`}
-      >
+      <Icon className="w-4 h-4" />
+      <span className={`font-mono-tech text-[11px] uppercase tracking-[0.18em] ${active ? 'font-semibold' : ''}`}>
         {label}
       </span>
     </button>
@@ -155,24 +151,23 @@ const Checkout = () => {
   }
 
   return (
-    <div className="min-h-screen bg-ink text-bone relative overflow-hidden">
+    <div className="min-h-screen bg-white text-gray-900 relative overflow-hidden">
       {/* atmosphere */}
-      <div className="absolute inset-0 bg-mesh-dark opacity-30" aria-hidden />
       <div
         aria-hidden
-        className="absolute -top-32 left-1/4 w-[500px] h-[500px] rounded-full bg-roxo/20 blur-[140px]"
+        className="absolute -top-32 left-1/4 w-[500px] h-[500px] rounded-full bg-roxo/8 blur-[140px]"
       />
       <div
         aria-hidden
-        className="absolute top-1/3 right-0 w-[400px] h-[400px] rounded-full bg-azul/15 blur-[140px]"
+        className="absolute top-1/3 right-0 w-[400px] h-[400px] rounded-full bg-azul/8 blur-[140px]"
       />
 
       {/* top bar */}
-      <header className="relative z-10 border-b border-bone/10 backdrop-blur-md bg-ink/50">
+      <header className="relative z-10 border-b border-gray-100 bg-white/90 backdrop-blur-md">
         <div className="container mx-auto px-6 py-4 max-w-6xl flex items-center justify-between">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-bone/60 hover:text-bone transition-colors text-sm"
+            className="inline-flex items-center gap-2 text-gray-400 hover:text-gray-800 transition-colors text-sm"
           >
             <FiArrowLeft className="w-4 h-4" />
             <span className="font-mono-tech text-[11px] uppercase tracking-[0.18em]">
@@ -181,13 +176,13 @@ const Checkout = () => {
           </Link>
           <div className="flex items-center gap-3">
             <div className="w-7 h-7 rounded-lg bg-gradient-roxo-azul flex items-center justify-center">
-              <span className="font-display text-bone text-sm">i</span>
+              <span className="font-display text-white text-sm">i</span>
             </div>
-            <span className="font-display text-bone text-base">
-              InovaWeb <span className="text-bone/40">CRM</span>
+            <span className="font-display text-gray-800 text-base">
+              InovaWeb <span className="text-gray-400">CRM</span>
             </span>
           </div>
-          <div className="flex items-center gap-2 text-bone/60">
+          <div className="flex items-center gap-2 text-gray-400">
             <FiLock className="w-3.5 h-3.5" />
             <span className="font-mono-tech text-[10px] uppercase tracking-[0.18em]">
               Pagamento seguro
@@ -203,7 +198,7 @@ const Checkout = () => {
           transition={{ duration: 0.6 }}
           className="mb-10"
         >
-          <div className="font-mono-tech text-xs uppercase tracking-[0.25em] text-bone/50 mb-3">
+          <div className="font-mono-tech text-xs uppercase tracking-[0.25em] text-gray-400 mb-3">
             Checkout · Plano Ilimitado
           </div>
           <h1 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-[1.05]">
@@ -301,13 +296,13 @@ const Checkout = () => {
               </div>
 
               {method === 'PIX' && (
-                <p className="font-mono-tech text-[11px] uppercase tracking-[0.18em] text-bone/50 leading-relaxed">
+                <p className="font-mono-tech text-[11px] uppercase tracking-[0.18em] text-gray-400 leading-relaxed">
                   · Geramos o QR Code na próxima tela · Aprovação imediata · Acesso liberado em minutos
                 </p>
               )}
 
               {method === 'BOLETO' && (
-                <p className="font-mono-tech text-[11px] uppercase tracking-[0.18em] text-bone/50 leading-relaxed">
+                <p className="font-mono-tech text-[11px] uppercase tracking-[0.18em] text-gray-400 leading-relaxed">
                   · Boleto bancário · Compensação em 1 a 3 dias úteis · Acesso liberado após confirmação
                 </p>
               )}
@@ -368,8 +363,8 @@ const Checkout = () => {
 
           {/* RIGHT — order summary */}
           <aside className="lg:sticky lg:top-6 self-start">
-            <div className="rounded-2xl border border-bone/10 bg-white/[0.02] backdrop-blur-md p-6">
-              <div className="font-mono-tech text-[10px] uppercase tracking-[0.25em] text-bone/50 mb-5">
+            <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+              <div className="font-mono-tech text-[10px] uppercase tracking-[0.25em] text-gray-400 mb-5">
                 Resumo do pedido
               </div>
 
@@ -393,7 +388,7 @@ const Checkout = () => {
                 />
               )}
 
-              <div className="border-t border-bone/10 mt-5 pt-5 space-y-3">
+              <div className="border-t border-gray-200 mt-5 pt-5 space-y-3">
                 {upsells.setup && (
                   <Row label="Total hoje">
                     {formatBRL(total)}
@@ -403,14 +398,14 @@ const Checkout = () => {
                   <span className="font-display text-2xl text-gradient">
                     {formatBRL(monthlyTotal)}
                   </span>
-                  <span className="font-mono-tech text-[10px] text-bone/40 ml-1">
+                  <span className="font-mono-tech text-[10px] text-gray-400 ml-1">
                     /mês
                   </span>
                 </Row>
               </div>
 
               {error && (
-                <div className="mt-4 p-3 rounded-lg border border-red-400/30 bg-red-500/10 text-red-300 text-xs">
+                <div className="mt-4 p-3 rounded-lg border border-red-200 bg-red-50 text-red-600 text-xs">
                   {error}
                 </div>
               )}
@@ -430,12 +425,12 @@ const Checkout = () => {
                 <FiArrowRight className="w-4 h-4" />
               </button>
 
-              <div className="mt-4 flex items-center justify-center gap-2 font-mono-tech text-[10px] uppercase tracking-[0.18em] text-bone/40">
+              <div className="mt-4 flex items-center justify-center gap-2 font-mono-tech text-[10px] uppercase tracking-[0.18em] text-gray-400">
                 <FiLock className="w-3 h-3" />
                 Pagamento processado pela Asaas
               </div>
 
-              <div className="mt-3 text-center font-mono-tech text-[10px] uppercase tracking-[0.18em] text-bone/40">
+              <div className="mt-3 text-center font-mono-tech text-[10px] uppercase tracking-[0.18em] text-gray-400">
                 Sem fidelidade · Cancele quando quiser
               </div>
             </div>
@@ -448,10 +443,10 @@ const Checkout = () => {
 
 const SectionHeader = ({ number, title }) => (
   <div className="flex items-center gap-3 mb-5">
-    <span className="font-mono-tech text-xs uppercase tracking-[0.25em] text-bone/50">
+    <span className="font-mono-tech text-xs uppercase tracking-[0.25em] text-gray-400">
       {number} — {title}
     </span>
-    <span className="flex-1 h-px bg-bone/10" />
+    <span className="flex-1 h-px bg-gray-200" />
   </div>
 )
 
@@ -465,7 +460,7 @@ const Field = ({
   inputMode,
 }) => (
   <label className={`block ${className}`}>
-    <span className="block font-mono-tech text-[10px] uppercase tracking-[0.2em] text-bone/50 mb-2">
+    <span className="block font-mono-tech text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">
       {label}
     </span>
     <input
@@ -475,7 +470,7 @@ const Field = ({
       placeholder={placeholder}
       inputMode={inputMode}
       autoComplete="off"
-      className="w-full px-4 py-3 rounded-lg border border-bone/10 bg-white/[0.02] text-bone placeholder:text-bone/25 focus:outline-none focus:border-bone/40 focus:bg-white/[0.04] transition-colors"
+      className="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white text-gray-900 placeholder:text-gray-300 focus:outline-none focus:border-roxo/40 focus:ring-2 focus:ring-roxo/10 transition-colors"
     />
   </label>
 )
@@ -486,32 +481,32 @@ const UpsellRow = ({ product, checked, onToggle, recurring }) => (
     onClick={onToggle}
     className={`w-full text-left rounded-xl border p-4 flex items-start gap-4 transition-all ${
       checked
-        ? 'border-bone/40 bg-white/[0.06]'
-        : 'border-bone/10 bg-white/[0.02] hover:border-bone/20'
+        ? 'border-roxo/30 bg-gradient-to-br from-roxo/5 to-azul/5'
+        : 'border-gray-200 bg-white hover:border-gray-300'
     }`}
   >
     <div
       className={`mt-1 w-5 h-5 rounded-md border flex-shrink-0 flex items-center justify-center transition-all ${
         checked
           ? 'border-transparent bg-gradient-roxo-azul'
-          : 'border-bone/30'
+          : 'border-gray-300'
       }`}
     >
-      {checked && <FiCheck className="w-3 h-3 text-bone" />}
+      {checked && <FiCheck className="w-3 h-3 text-white" />}
     </div>
     <div className="flex-1 min-w-0">
       <div className="flex items-baseline justify-between gap-3 flex-wrap">
-        <span className="font-display text-bone text-lg">{product.name}</span>
-        <span className="font-mono-tech text-bone/80 text-sm">
+        <span className="font-display text-gray-900 text-lg">{product.name}</span>
+        <span className="font-mono-tech text-gray-700 text-sm">
           {formatBRL(product.price)}
           {recurring && (
-            <span className="text-bone/40 text-[10px] uppercase tracking-[0.18em] ml-1">
+            <span className="text-gray-400 text-[10px] uppercase tracking-[0.18em] ml-1">
               /mês
             </span>
           )}
         </span>
       </div>
-      <p className="text-bone/55 text-sm mt-1">{product.description}</p>
+      <p className="text-gray-500 text-sm mt-1">{product.description}</p>
     </div>
   </button>
 )
@@ -519,12 +514,12 @@ const UpsellRow = ({ product, checked, onToggle, recurring }) => (
 const SummaryLine = ({ title, subtitle, price }) => (
   <div className="flex items-start justify-between gap-3 py-2">
     <div className="min-w-0">
-      <div className="text-bone text-sm font-medium">{title}</div>
-      <div className="font-mono-tech text-[10px] uppercase tracking-[0.18em] text-bone/40 mt-0.5">
+      <div className="text-gray-800 text-sm font-medium">{title}</div>
+      <div className="font-mono-tech text-[10px] uppercase tracking-[0.18em] text-gray-400 mt-0.5">
         {subtitle}
       </div>
     </div>
-    <div className="text-bone/90 text-sm font-semibold whitespace-nowrap">
+    <div className="text-gray-700 text-sm font-semibold whitespace-nowrap">
       {formatBRL(price)}
     </div>
   </div>
@@ -532,10 +527,10 @@ const SummaryLine = ({ title, subtitle, price }) => (
 
 const Row = ({ label, children }) => (
   <div className="flex items-baseline justify-between">
-    <span className="font-mono-tech text-[10px] uppercase tracking-[0.18em] text-bone/50">
+    <span className="font-mono-tech text-[10px] uppercase tracking-[0.18em] text-gray-400">
       {label}
     </span>
-    <span className="text-bone">{children}</span>
+    <span className="text-gray-900">{children}</span>
   </div>
 )
 
