@@ -1,118 +1,124 @@
 import { motion } from 'framer-motion'
-import { FiCheck, FiArrowRight, FiZap } from 'react-icons/fi'
+import { FiCheck, FiArrowRight } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
+import Reveal from '../Reveal'
+
+const CHECKOUT_URL = '/checkout'
 
 const features = [
-  'Passo a Passo Completo em Vídeo para ativar o CRM em Poucos Minutos',
-  'Assinatura do CRM Completa com Usuários e Contatos Ilimitados',
-  'Automações Prontas e Validadas do CRM',
-  'Integrações com Google, Instagram, Facebook, TikTok e Linkedin',
-  'Programação de Post em TODAS as redes sociais',
-  'Modelos Validados de E-mail Marketing',
-  'Automações de Instagram (igual Manychat)',
-  'Conexão de WhatsApp via QR Code',
-  'Automações Validadas de Follow UP',
-  'Automações Validadas de Nutrição (Geladeira 30D, 60D e 90D)',
-  'Suporte Individual no WhatsApp de Domingo a Domingo',
-  'Curso com +40 aulas completas sobre a plataforma'
+  'Usuários e contatos ilimitados',
+  'CRM, funis, sites e automações sem limite',
+  'WhatsApp via QR Code + automações',
+  'Programação de posts em todas as redes',
+  'Modelos de e-mail marketing prontos',
+  'Automações de Instagram (estilo ManyChat)',
+  'Sequências de follow-up validadas',
+  'Geladeira 30, 60 e 90 dias',
+  'Curso com +40 aulas',
+  'Suporte no WhatsApp · domingo a domingo',
 ]
 
-const Pricing = ({ onOpenCheckout }) => {
+const Pricing = () => {
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-8"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Planos & <span className="text-roxo">Preços</span>
-          </h2>
-          <p className="text-xl text-gray-600 mb-4">
-            Um plano, múltiplas ferramentas.
-          </p>
-          <div className="inline-block bg-gradient-to-r from-roxo to-azul text-white px-6 py-2 rounded-full font-semibold">
-            Desconto Vitalício de 70% Aplicado
-          </div>
-        </motion.div>
+    <section id="planos" className="relative bg-bone text-ink overflow-hidden">
+      <div className="container mx-auto px-6 py-20 md:py-32 max-w-5xl">
+        <Reveal className="flex items-center gap-3 mb-12">
+          <span className="font-mono-tech text-xs uppercase tracking-[0.25em] text-ink/50">
+            04 — Plano único
+          </span>
+          <span className="flex-1 h-px bg-ink/15" />
+        </Reveal>
+
+        <div className="text-center mb-14">
+          <Reveal as="h2" delay={0.1} className="font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] max-w-3xl mx-auto">
+            Sem confusão.{' '}
+            <em className="text-gradient not-italic">Um plano</em>, tudo
+            incluso.
+          </Reveal>
+          <Reveal as="p" delay={0.2} className="text-ink/60 text-lg mt-6 max-w-xl mx-auto">
+            Sem fidelidade, sem upsell escondido, sem "fale com vendas".
+          </Reveal>
+        </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
+          className="relative max-w-3xl mx-auto"
         >
-          <div className="bg-gradient-to-br from-roxo to-azul rounded-3xl p-1">
-            <div className="bg-white rounded-3xl p-8">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  Plano Ilimitado
-                </h3>
-                <div className="flex items-center justify-center gap-2 text-gray-500 mb-4">
-                  <FiZap className="w-5 h-5 text-roxo" />
-                  <span className="text-sm">Tudo que você precisa em um só lugar</span>
-                </div>
-              </div>
+          {/* Glow */}
+          <div
+            aria-hidden
+            className="absolute -inset-4 bg-gradient-to-r from-roxo/20 to-azul/20 blur-3xl rounded-3xl"
+          />
 
-              <div className="space-y-3 mb-8">
-                {features.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.03 }}
-                    className="flex items-start gap-3"
+          <div className="relative rounded-2xl border border-ink/10 bg-ink text-bone p-1">
+            <div className="rounded-[inherit] p-10 md:p-12 relative overflow-hidden">
+              <div
+                aria-hidden
+                className="absolute inset-0 bg-mesh-dark opacity-50"
+              />
+
+              <div className="relative grid md:grid-cols-2 gap-12">
+                {/* Left: price */}
+                <div>
+                  <div className="font-mono-tech text-[10px] uppercase tracking-[0.25em] text-bone/50 mb-3">
+                    Plano Ilimitado
+                  </div>
+                  <div className="flex items-baseline gap-2 mb-2">
+                    <span className="font-display text-bone/30 text-2xl line-through">
+                      R$ 497
+                    </span>
+                    <span className="font-mono-tech text-[10px] text-emerald-400 uppercase tracking-[0.2em]">
+                      −70%
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-2 mb-1">
+                    <span className="font-display text-7xl md:text-8xl text-gradient leading-none">
+                      R$149
+                    </span>
+                  </div>
+                  <div className="font-mono-tech text-xs uppercase tracking-[0.2em] text-bone/40 mb-8">
+                    /mês · cancelável a qualquer momento
+                  </div>
+
+                  <Link
+                    to={CHECKOUT_URL}
+                    className="group w-full inline-flex items-center justify-center gap-3 bg-bone text-ink px-7 py-4 rounded-full font-semibold text-base shadow-[0_20px_60px_-15px_rgba(245,244,240,0.5)] hover:shadow-[0_25px_80px_-15px_rgba(245,244,240,0.8)] transition-shadow"
                   >
-                    <FiCheck className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 text-sm">{feature}</span>
-                  </motion.div>
-                ))}
-              </div>
+                    Quero o plano ilimitado
+                    <FiArrowRight className="transition-transform group-hover:translate-x-1" />
+                  </Link>
 
-              <div className="text-center border-t border-gray-100 pt-6">
-                <p className="text-gray-500 mb-2">DE R$497,00/mês por:</p>
-                <div className="mb-4">
-                  <span className="text-6xl font-bold text-gray-900">R$149</span>
-                  <span className="text-xl text-gray-500">/mês</span>
-                </div>
-                
-                <button 
-                  onClick={onOpenCheckout}
-                  className="w-full bg-gradient-to-r from-roxo to-azul text-white py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-all shadow-lg mb-3"
-                >
-                  Quero Plano Ilimitado
-                </button>
-                
-                <div className="flex items-center justify-center gap-4 text-gray-500 text-sm mb-4">
-                  <span className="flex items-center gap-1">
-                    <FiCheck className="w-4 h-4 text-green-500" />
-                    Sem fidelidade
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <FiCheck className="w-4 h-4 text-green-500" />
-                    Cancele quando quiser
-                  </span>
+                  <div className="mt-5 flex items-center justify-center gap-4 font-mono-tech text-[10px] uppercase tracking-[0.18em] text-bone/40">
+                    <span>Sem fidelidade</span>
+                    <span className="w-1 h-1 rounded-full bg-bone/30" />
+                    <span>Setup em 5min</span>
+                  </div>
                 </div>
 
-                <p className="text-xs text-gray-400 mb-6">
-                  Pagamento Internacional. O valor em reais pode sofrer pequena variação conforme o cartão.
-                </p>
-
-                <div className="flex items-center justify-center gap-6 text-gray-600 text-sm">
-                  <span className="flex items-center gap-1">
-                    <FiCheck className="w-4 h-4 text-roxo" />
-                    Suporte domingo a domingo
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <FiCheck className="w-4 h-4 text-roxo" />
-                    Setup em minutos
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <FiCheck className="w-4 h-4 text-roxo" />
-                    Tudo ilimitado
-                  </span>
+                {/* Right: features */}
+                <div>
+                  <div className="font-mono-tech text-[10px] uppercase tracking-[0.2em] text-bone/50 mb-5">
+                    Tudo que está incluso
+                  </div>
+                  <ul className="space-y-3">
+                    {features.map((f, i) => (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.04 }}
+                        className="flex items-start gap-3 text-bone/85 text-sm"
+                      >
+                        <span className="mt-1 w-4 h-4 rounded-full bg-gradient-roxo-azul flex items-center justify-center flex-shrink-0">
+                          <FiCheck className="w-2.5 h-2.5 text-bone" />
+                        </span>
+                        <span>{f}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>

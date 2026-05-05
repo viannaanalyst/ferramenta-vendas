@@ -1,82 +1,89 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiChevronDown } from 'react-icons/fi'
+import { FiPlus } from 'react-icons/fi'
+import Reveal from '../Reveal'
 
 const faqs = [
   {
-    question: 'Quer comprar, mas ficou na dúvida?',
-    answer: 'Entendemos! Oferecemos suporte completo para tirar todas as suas dúvidas antes da compra. Entre em contato pelo WhatsApp.'
+    question: 'Eu preciso pagar por updates?',
+    answer:
+      'Nunca. Lançamos updates frequentes — novos templates, funis, automações e estratégias — e você recebe tudo grátis dentro do seu plano.',
   },
   {
-    question: 'Posso cancelar a qualquer momento?',
-    answer: 'Sim! Não há fidelidade. Cancele quando quiser, sem burocracia.'
+    question: 'Posso cancelar quando quiser?',
+    answer:
+      'Sim. Sem fidelidade, sem multa, sem burocracia. Cancele com um clique direto no painel.',
   },
   {
-    question: 'Vocês possuem API oficial do Facebook/Meta?',
-    answer: 'Sim! A InovaWeb possui integração oficial com a API do Facebook/Meta, garantindo conexão segura e estável com Instagram, Messenger e Facebook Ads. Isso significa que suas automações e atendimentos funcionam com total confiabilidade e dentro das diretrizes da plataforma.'
+    question: 'Vocês têm API oficial do Facebook/Meta?',
+    answer:
+      'Sim. Integração oficial com a API do Facebook/Meta — Instagram, Messenger e Ads — com conexão estável e dentro das diretrizes da plataforma.',
   },
   {
-    question: 'Tem IA para atendimento ao cliente?',
-    answer: 'Sim! A plataforma conta com um Agente de IA que pode atender seus clientes automaticamente no WhatsApp, Instagram e Facebook. A IA responde dúvidas, qualifica leads e encaminha conversas para sua equipe quando necessário — tudo de forma inteligente e personalizada.'
-  }
+    question: 'Tem IA pra atender clientes?',
+    answer:
+      'Sim. Agente de IA que atende no WhatsApp, Instagram e Facebook 24/7. Responde dúvidas, qualifica leads e passa para sua equipe quando preciso.',
+  },
 ]
 
 const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState(null)
+  const [openIndex, setOpenIndex] = useState(0)
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Perguntas <span className="text-roxo">Frequentes</span>
-          </h2>
-        </motion.div>
+    <section className="relative bg-ink text-bone overflow-hidden">
+      <div className="absolute inset-0 bg-mesh-dark opacity-25" aria-hidden />
 
-        <div className="max-w-3xl mx-auto space-y-4">
-          {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="bg-gray-50 rounded-lg overflow-hidden"
-            >
-              <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-100 transition-colors"
-              >
-                <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
-                <motion.div
-                  animate={{ rotate: openIndex === index ? 180 : 0 }}
-                  transition={{ duration: 0.2 }}
+      <div className="relative container mx-auto px-6 py-20 md:py-28 max-w-4xl">
+        <Reveal className="flex items-center gap-3 mb-12">
+          <span className="font-mono-tech text-xs uppercase tracking-[0.25em] text-bone/50">
+            05 — Dúvidas
+          </span>
+          <span className="flex-1 h-px bg-bone/15" />
+        </Reveal>
+
+        <Reveal as="h2" delay={0.1} className="font-display text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.05] mb-14 max-w-3xl">
+          Quer comprar, mas{' '}
+          <em className="text-gradient not-italic">ficou na dúvida</em>?
+        </Reveal>
+
+        <div className="border-y border-bone/10">
+          {faqs.map((faq, idx) => {
+            const isOpen = openIndex === idx
+            return (
+              <Reveal key={idx} delay={0.05 * idx} className="border-b border-bone/10 last:border-b-0">
+                <button
+                  onClick={() => setOpenIndex(isOpen ? -1 : idx)}
+                  className="w-full flex items-center justify-between gap-6 py-6 text-left group"
                 >
-                  <FiChevronDown className="w-5 h-5 text-roxo flex-shrink-0" />
-                </motion.div>
-              </button>
-              <AnimatePresence>
-                {openIndex === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
+                  <span className="font-display text-xl md:text-2xl text-bone group-hover:text-gradient transition-colors">
+                    {faq.question}
+                  </span>
+                  <motion.span
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex-shrink-0 w-9 h-9 rounded-full border border-bone/20 flex items-center justify-center"
                   >
-                    <div className="px-6 pb-4 text-gray-600">
-                      {faq.answer}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                    <FiPlus className="w-4 h-4 text-bone/70" />
+                  </motion.span>
+                </button>
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="pb-6 pr-16 text-bone/65 leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Reveal>
+            )
+          })}
         </div>
       </div>
     </section>

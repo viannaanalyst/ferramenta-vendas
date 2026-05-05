@@ -1,0 +1,13 @@
+# Copie este arquivo para .dev.vars (não commitado) para rodar localmente com `wrangler pages dev`.
+# Em produção, configure essas variáveis em Cloudflare Pages → Settings → Environment variables.
+
+# Asaas
+ASAAS_ENV=sandbox            # sandbox | production
+ASAAS_API_KEY=               # API key do Asaas (Integrações → API → Gerar)
+ASAAS_WEBHOOK_TOKEN=         # token livre que você define no painel Asaas (Integrações → Webhook)
+
+# Notificações
+DISCORD_WEBHOOK_URL=         # URL do webhook do canal do Discord
+RESEND_API_KEY=              # API key do Resend (https://resend.com)
+NOTIFY_EMAIL_FROM=onboarding@inovawebtech.com.br
+NOTIFY_EMAIL_TO=             # seu email pessoal pra receber as notificações
