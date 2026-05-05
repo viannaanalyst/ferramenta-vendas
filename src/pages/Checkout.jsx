@@ -1,7 +1,14 @@
 import { useState, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { FiArrowLeft, FiLock, FiCheck, FiShield, FiCreditCard } from 'react-icons/fi'
+import {
+  FiArrowLeft,
+  FiArrowRight,
+  FiLock,
+  FiCheck,
+  FiShield,
+  FiCreditCard,
+} from 'react-icons/fi'
 import { PRODUCTS, formatBRL } from '../lib/products'
 import {
   isValidCPF,
@@ -12,22 +19,33 @@ import {
   onlyDigits,
 } from '../lib/validators'
 
-const PaymentTab = ({ value, current, onClick, label, icon: Icon }) => (
-  <button
-    type="button"
-    onClick={() => onClick(value)}
-    className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-lg border transition-all ${
-      current === value
-        ? 'border-bone/40 bg-white/[0.06] text-bone'
-        : 'border-bone/10 bg-white/[0.02] text-bone/50 hover:text-bone/80'
-    }`}
-  >
-    <Icon className="w-4 h-4" />
-    <span className="font-mono-tech text-[11px] uppercase tracking-[0.18em]">
-      {label}
-    </span>
-  </button>
-)
+const PaymentTab = ({ value, current, onClick, label, icon: Icon }) => {
+  const active = current === value
+  return (
+    <button
+      type="button"
+      onClick={() => onClick(value)}
+      aria-pressed={active}
+      className={`relative flex-1 flex items-center justify-center gap-2 py-3.5 rounded-lg border transition-all ${
+        active
+          ? 'border-transparent bg-gradient-to-br from-roxo/25 to-azul/15 text-bone shadow-[0_0_0_1.5px_rgba(255,255,255,0.35),0_10px_30px_-10px_rgba(106,17,203,0.6)]'
+          : 'border-bone/10 bg-white/[0.02] text-bone/50 hover:text-bone/80 hover:border-bone/20'
+      }`}
+    >
+      {active && (
+        <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
+      )}
+      <Icon className={`w-4 h-4 ${active ? 'text-bone' : ''}`} />
+      <span
+        className={`font-mono-tech text-[11px] uppercase tracking-[0.18em] ${
+          active ? 'font-semibold' : ''
+        }`}
+      >
+        {label}
+      </span>
+    </button>
+  )
+}
 
 const Checkout = () => {
   const navigate = useNavigate()
@@ -317,7 +335,7 @@ const Checkout = () => {
                     onChange={(v) =>
                       setCard((c) => ({ ...c, holder: v.toUpperCase() }))
                     }
-                    placeholder="GABRIEL VIANNA"
+                    placeholder="NOME COMO ESTÁ NO CARTÃO"
                     className="sm:col-span-2"
                   />
                   <Field
@@ -400,9 +418,16 @@ const Checkout = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="mt-6 w-full inline-flex items-center justify-center gap-3 bg-bone text-ink px-6 py-4 rounded-full font-semibold text-base shadow-[0_20px_60px_-15px_rgba(245,244,240,0.5)] hover:shadow-[0_25px_80px_-15px_rgba(245,244,240,0.8)] transition-shadow disabled:opacity-50 disabled:cursor-not-allowed"
+                className="mt-6 w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-roxo/80 to-azul/80 text-bone px-6 py-3.5 rounded-lg font-semibold text-base hover:from-roxo hover:to-azul transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {loading ? 'Processando…' : 'Finalizar compra'}
+                {loading
+                  ? 'Processando…'
+                  : method === 'PIX'
+                    ? 'Gerar QR Code Pix'
+                    : method === 'BOLETO'
+                      ? 'Gerar boleto'
+                      : 'Pagar com cartão'}
+                <FiArrowRight className="w-4 h-4" />
               </button>
 
               <div className="mt-4 flex items-center justify-center gap-2 font-mono-tech text-[10px] uppercase tracking-[0.18em] text-bone/40">
