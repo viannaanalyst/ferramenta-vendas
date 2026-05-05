@@ -23,11 +23,11 @@ const TopBanner = () => {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 bg-ink/95 backdrop-blur-md text-bone border-b border-bone/15 py-2.5 px-4"
+      className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md text-gray-800 border-b border-gray-200 py-2.5 px-4"
     >
       <div className="container mx-auto flex items-center justify-center gap-3 text-center">
         <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-        <p className="font-mono-tech text-[11px] md:text-xs uppercase tracking-[0.18em] text-bone/80">
+        <p className="font-mono-tech text-[11px] md:text-xs uppercase tracking-[0.18em] text-gray-600">
           {days.join(' · ')} ·{' '}
           <span className="text-gradient font-bold">70% off vitalício</span>{' '}
           aplicado

@@ -77,22 +77,21 @@ const StatValue = ({ parts }) => (
 
 const Stats = () => {
   return (
-    <section className="relative bg-ink text-bone overflow-hidden">
-      <div className="absolute inset-0 bg-mesh-dark opacity-40" aria-hidden />
+    <section className="relative bg-gray-50 text-gray-900 overflow-hidden">
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bone/20 to-transparent"
+        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"
       />
 
       <div className="relative container mx-auto px-6 py-20 md:py-28 max-w-6xl">
         <Reveal className="flex items-center gap-3 mb-12">
-          <span className="font-mono-tech text-xs uppercase tracking-[0.25em] text-bone/50">
+          <span className="font-mono-tech text-xs uppercase tracking-[0.25em] text-gray-400">
             01 — Por dentro da plataforma
           </span>
-          <span className="flex-1 h-px bg-bone/15" />
+          <span className="flex-1 h-px bg-gray-200" />
         </Reveal>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-bone/10 border border-bone/10 rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-200 border border-gray-200 rounded-2xl overflow-hidden">
           {stats.map((stat, idx) => (
             <motion.div
               key={idx}
@@ -100,11 +99,11 @@ const Stats = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="bg-ink p-8 md:p-10 group hover:bg-white/[0.02] transition-colors"
+              className="bg-white p-8 md:p-10 group hover:bg-gray-50 transition-colors"
             >
               <StatValue parts={stat.parts} />
-              <div className="mt-4 text-bone font-medium">{stat.label}</div>
-              <div className="mt-2 font-mono-tech text-[11px] uppercase tracking-[0.2em] text-bone/40">
+              <div className="mt-4 text-gray-800 font-medium">{stat.label}</div>
+              <div className="mt-2 font-mono-tech text-[11px] uppercase tracking-[0.2em] text-gray-400">
                 {stat.note}
               </div>
             </motion.div>

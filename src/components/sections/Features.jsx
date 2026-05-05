@@ -119,30 +119,28 @@ const Features = () => {
   }
 
   return (
-    <section className="relative bg-ink text-bone overflow-hidden">
-      <div className="absolute inset-0 bg-mesh-dark opacity-20" aria-hidden />
-
+    <section className="relative bg-white text-gray-900 overflow-hidden">
       <div className="relative container mx-auto px-6 py-20 md:py-32 max-w-6xl">
         <Reveal className="flex items-center gap-3 mb-12">
-          <span className="font-mono-tech text-xs uppercase tracking-[0.25em] text-bone/50">
+          <span className="font-mono-tech text-xs uppercase tracking-[0.25em] text-gray-400">
             02 — Como funciona
           </span>
-          <span className="flex-1 h-px bg-bone/15" />
+          <span className="flex-1 h-px bg-gray-200" />
         </Reveal>
 
         <div className="flex items-end justify-between mb-14 flex-wrap gap-6">
-          <Reveal as="h2" delay={0.1} className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[1.05] max-w-3xl">
+          <Reveal as="h2" delay={0.1} className="font-display text-[clamp(2.5rem,5vw,4rem)] leading-[1.05] max-w-3xl text-gray-900">
             Uma plataforma. Todo o ciclo de{' '}
             <em className="text-gradient not-italic">vendas</em> coberto.
           </Reveal>
-          <Reveal as="p" delay={0.2} className="text-bone/60 max-w-md text-lg">
+          <Reveal as="p" delay={0.2} className="text-gray-500 max-w-md text-lg">
             Da primeira impressão à recompra. Sem juntar 8 ferramentas
             diferentes, sem pagar 8 assinaturas separadas.
           </Reveal>
         </div>
 
         {/* Tab nav */}
-        <div className="relative border-y border-bone/10 mb-10">
+        <div className="relative border-y border-gray-200 mb-10">
           <div className="flex overflow-x-auto scrollbar-hide">
             {stages.map((s, idx) => {
               const TabIcon = s.icon
@@ -152,7 +150,7 @@ const Features = () => {
                   key={s.id}
                   onClick={() => handleTabClick(idx)}
                   className={`relative flex-1 min-w-[120px] flex flex-col items-center gap-2 py-5 px-4 transition-colors ${
-                    isActive ? 'text-bone' : 'text-bone/40 hover:text-bone/70'
+                    isActive ? 'text-gray-900' : 'text-gray-400 hover:text-gray-600'
                   }`}
                 >
                   <TabIcon className="w-5 h-5" />
@@ -160,7 +158,7 @@ const Features = () => {
                     0{idx + 1} {s.label}
                   </span>
                   {isActive && (
-                    <span className="absolute -bottom-px left-0 right-0 h-0.5 bg-bone/10 overflow-hidden">
+                    <span className="absolute -bottom-px left-0 right-0 h-0.5 bg-gray-100 overflow-hidden">
                       <motion.span
                         key={`${active}-${paused}`}
                         initial={{ width: '0%' }}
@@ -190,33 +188,33 @@ const Features = () => {
             className="grid md:grid-cols-2 gap-12 items-start"
           >
             <div>
-              <div className="font-mono-tech text-[10px] uppercase tracking-[0.25em] text-bone/40 mb-4">
+              <div className="font-mono-tech text-[10px] uppercase tracking-[0.25em] text-gray-400 mb-4">
                 Estágio 0{active + 1} · {stage.label}
               </div>
-              <h3 className="font-display text-[clamp(2rem,4vw,3rem)] leading-[1.05] mb-5">
+              <h3 className="font-display text-[clamp(2rem,4vw,3rem)] leading-[1.05] mb-5 text-gray-900">
                 {stage.title}
               </h3>
-              <p className="text-bone/60 text-lg leading-relaxed mb-8">
+              <p className="text-gray-500 text-lg leading-relaxed mb-8">
                 {stage.description}
               </p>
               <Link
                 to="/checkout"
-                className="inline-flex items-center gap-2 text-bone font-semibold border-b-2 border-bone pb-1 hover:gap-3 transition-all"
+                className="inline-flex items-center gap-2 text-gray-900 font-semibold border-b-2 border-gray-900 pb-1 hover:gap-3 transition-all"
               >
                 Quero esse fluxo
                 <span aria-hidden>→</span>
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 gap-px bg-bone/10 border border-bone/10 rounded-2xl overflow-hidden">
+            <div className="grid grid-cols-2 gap-px bg-gray-100 border border-gray-100 rounded-2xl overflow-hidden">
               {stage.features.map((feat) => (
                 <div
                   key={feat}
-                  className="bg-ink p-5 hover:bg-white/[0.03] transition-colors"
+                  className="bg-white p-5 hover:bg-gray-50 transition-colors"
                 >
                   <div className="flex items-start gap-3">
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gradient-to-br from-roxo to-azul flex-shrink-0" />
-                    <span className="text-sm font-medium text-bone/80">
+                    <span className="text-sm font-medium text-gray-700">
                       {feat}
                     </span>
                   </div>

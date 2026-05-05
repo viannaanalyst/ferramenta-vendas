@@ -20,13 +20,13 @@ const features = [
 
 const Pricing = () => {
   return (
-    <section id="planos" className="relative bg-bone text-ink overflow-hidden">
+    <section id="planos" className="relative bg-gray-50 text-gray-900 overflow-hidden">
       <div className="container mx-auto px-6 py-20 md:py-32 max-w-5xl">
         <Reveal className="flex items-center gap-3 mb-12">
-          <span className="font-mono-tech text-xs uppercase tracking-[0.25em] text-ink/50">
+          <span className="font-mono-tech text-xs uppercase tracking-[0.25em] text-gray-400">
             04 — Plano único
           </span>
-          <span className="flex-1 h-px bg-ink/15" />
+          <span className="flex-1 h-px bg-gray-200" />
         </Reveal>
 
         <div className="text-center mb-14">
@@ -35,7 +35,7 @@ const Pricing = () => {
             <em className="text-gradient not-italic">Um plano</em>, tudo
             incluso.
           </Reveal>
-          <Reveal as="p" delay={0.2} className="text-ink/60 text-lg mt-6 max-w-xl mx-auto">
+          <Reveal as="p" delay={0.2} className="text-gray-500 text-lg mt-6 max-w-xl mx-auto">
             Sem fidelidade, sem upsell escondido, sem "fale com vendas".
           </Reveal>
         </div>

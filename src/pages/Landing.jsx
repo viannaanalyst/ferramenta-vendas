@@ -9,7 +9,7 @@ import Footer from '../components/sections/Footer'
 
 const Landing = () => {
   return (
-    <div className="min-h-screen bg-ink">
+    <div className="min-h-screen bg-white">
       <TopBanner />
       <main className="pt-12">
         <Hero />
