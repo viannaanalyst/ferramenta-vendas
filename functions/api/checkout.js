@@ -177,7 +177,7 @@ export const onRequestPost = async ({ request, env }) => {
       total,
       pix,
       boleto,
-      charges: charges.map((c) => ({ description: c.description, value: c.value })),
+      charges: charges.map((c) => ({ description: c.description, value: c.value, id: c.id, paymentId: c.paymentId })),
       customerId,
     })
   } catch (err) {
