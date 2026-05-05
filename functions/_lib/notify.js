@@ -7,7 +7,11 @@ const BRL = (v) =>
   new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v)
 
 export const notifyDiscord = async (env, { title, customer, items, total, method, status }) => {
-  if (!env.DISCORD_WEBHOOK_URL) return
+  if (!env.DISCORD_WEBHOOK_URL) {
+    console.log('Discord: DISCORD_WEBHOOK_URL not set, skipping')
+    return
+  }
+  console.log('Discord: sending to', env.DISCORD_WEBHOOK_URL.slice(0, 40) + '...')
   try {
     const fields = [
       { name: 'Cliente', value: `${customer.name}\n${customer.email}\n${customer.phone}`, inline: true },
